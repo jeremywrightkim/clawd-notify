@@ -154,7 +154,8 @@ Use **Send a test notification** to preview the result before saving.
     ├── clawd-ask-hero.png     banner 364x180
     ├── clawd-done-hero.png    banner 364x180
     ├── clawd_question.png     icon 256x256
-    └── clawd_done.png         icon 256x256
+    ├── clawd_done.png         icon 256x256
+    └── clawd.png              notification header icon 256x256 (no badge)
 
 HKEY_CURRENT_USER\Software\Classes\clawd-focus   (protocol for toast clicks — removed on uninstall)
 ```
@@ -182,7 +183,7 @@ powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\.claude\claude-notify
 If this works but the hook doesn't, it's a settings issue. If this doesn't work either, check Windows notification settings (Focus Assist / Do Not Disturb).
 
 **4. Windows notification settings**
-In Settings → System → Notifications, make sure "Windows PowerShell" is turned on.
+In Settings → System → Notifications, make sure "Clawd Notify" is turned on.
 
 ## Development
 
@@ -205,8 +206,8 @@ Save `.ps1` files as **UTF-8 with BOM**. Without a BOM, Windows PowerShell 5.1 g
 
 ## Notes
 
-Toasts are sent with Windows PowerShell's registered AppUserModelId, because Windows silently drops toasts from unregistered IDs. As a result, they are listed as "Windows PowerShell" in notification settings and Notification Center. The title shown on the toast is the one you set ("Claude Code").
+Toasts are sent with a dedicated AppUserModelId (`ClawdNotify`). Windows silently drops toasts from unregistered IDs, so the installer registers a display name ("Clawd Notify") and icon under `HKCU:\Software\Classes\AppUserModelId\ClawdNotify`. The toast header, notification settings, and Notification Center therefore show "Clawd Notify", and it can be turned on or off separately from other PowerShell scripts. Uninstalling removes this registration, the notification settings key (`...\Notifications\Settings\ClawdNotify`), and any toasts left in Notification Center.
 
 ---
 
-v1.1.0 | Developer: Kim Sulho | jeremywrightkim@gmail.com
+v1.2.0 | Developer: Kim Sulho | jeremywrightkim@gmail.com

@@ -51,7 +51,7 @@ $Script:B64_UI = @(
 'Iz4NCltDbWRsZXRCaW5kaW5nKCldDQpwYXJhbSgpDQoNCiRFcnJvckFjdGlvblByZWZlcmVuY2Ug',
 'PSAnU3RvcCcNCkFkZC1UeXBlIC1Bc3NlbWJseU5hbWUgU3lzdGVtLldpbmRvd3MuRm9ybXMNCkFk',
 'ZC1UeXBlIC1Bc3NlbWJseU5hbWUgU3lzdGVtLkRyYXdpbmcNCltTeXN0ZW0uV2luZG93cy5Gb3Jt',
-'cy5BcHBsaWNhdGlvbl06OkVuYWJsZVZpc3VhbFN0eWxlcygpDQoNCiRWZXJzaW9uID0gJ3YxLjEu',
+'cy5BcHBsaWNhdGlvbl06OkVuYWJsZVZpc3VhbFN0eWxlcygpDQoNCiRWZXJzaW9uID0gJ3YxLjIu',
 'MCcNCg0KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t',
 'LS0tLS0tLS0tLS0tLS0tIOqyveuhnA0KJENsYXVkZURpciAgICA9IEpvaW4tUGF0aCAkZW52OlVT',
 'RVJQUk9GSUxFICcuY2xhdWRlJw0KJEFzc2V0c0RpciAgICA9IEpvaW4tUGF0aCAkQ2xhdWRlRGly',
@@ -2543,6 +2543,61 @@ $Script:B64_DONEICON = @(
 'rkJggg=='
 ) -join ''
 
+$Script:B64_APPICON = @(
+'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'
+) -join ''
+
 $Script:B64_ASK = @(
 'iVBORw0KGgoAAAANSUhEUgAAAWwAAAC0CAYAAACwhRZPAAAAAXNSR0IArs4c6QAAAARnQU1BAACx',
 'jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAIeHSURBVHhe7b0HmBTXmTXM/v+3++3nXa+DsoAZ',
@@ -3709,10 +3764,16 @@ $AskImage    = Join-Path $AssetsDir 'clawd-ask-hero.png'
 $DoneImage   = Join-Path $AssetsDir 'clawd-done-hero.png'
 $AskIcon     = Join-Path $AssetsDir 'clawd_question.png'
 $DoneIcon    = Join-Path $AssetsDir 'clawd_done.png'
+# 알림 헤더와 알림 설정 목록에 쓰는 배지 없는 Clawd 아이콘
+$AppIcon     = Join-Path $AssetsDir 'clawd.png'
 
-# Windows PowerShell 5.1의 등록된 AppUserModelId.
-# 등록되지 않은 임의의 문자열을 쓰면 Windows가 토스트를 조용히 버린다.
-$AppId = '{1AC14E77-02E7-4E5D-B744-2EB1AE5198B7}\WindowsPowerShell\v1.0\powershell.exe'
+# 토스트 발신자 ID(AppUserModelId). 토스트 상단 헤더와 알림 설정 목록에 표시될 이름과 아이콘은
+# 설치 시 레지스트리에 등록한다. 등록되지 않은 ID로 보내면 Windows가 토스트를 조용히 버린다.
+$AppId          = 'ClawdNotify'
+$AppDisplayName = 'Clawd Notify'
+$AppIdKey       = "HKCU:\Software\Classes\AppUserModelId\$AppId"
+# 알림을 처음 받을 때 Windows가 만드는 알림 설정 키 (제거 시 함께 정리)
+$AppNotifyKey   = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\$AppId"
 
 # ---------------------------------------------------------------- 언어
 # 알림 스크립트와 설정 창이 함께 읽는 설정 파일
@@ -4044,7 +4105,18 @@ function Invoke-Uninstall {
         Write-Ok (T 'clawd-focus 프로토콜 등록 해제' 'Unregistered clawd-focus protocol')
     }
 
-    foreach ($f in @($NotifyScript, $SettingsUI, $FocusExe, $FocusScript, $ConfigPath, $AskImage, $DoneImage, $AskIcon, $DoneIcon)) {
+    # 알림 센터에 남은 알림을 먼저 지운다. 등록을 먼저 해제하면 남은 알림이 정리되지 않는다.
+    try {
+        Add-Type -AssemblyName System.Runtime.WindowsRuntime -ErrorAction Stop
+        $mgr = [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime]
+        $mgr::History.Clear($AppId)
+    } catch { }
+    foreach ($k in @($AppIdKey, $AppNotifyKey)) {
+        if (Test-Path $k) { Remove-Item $k -Recurse -Force }
+    }
+    Write-Ok ((T '알림 발신자 등록 해제: ' 'Unregistered notification sender: ') + $AppDisplayName)
+
+    foreach ($f in @($NotifyScript, $SettingsUI, $FocusExe, $FocusScript, $ConfigPath, $AskImage, $DoneImage, $AskIcon, $DoneIcon, $AppIcon)) {
         if (Test-Path $f) { Remove-Item $f -Force; Write-Ok ((T '삭제: ' 'Deleted: ') + (Split-Path $f -Leaf)) }
     }
     if ((Test-Path $AssetsDir) -and -not (Get-ChildItem $AssetsDir -Force)) {
@@ -4143,8 +4215,21 @@ function Invoke-Install {
         [System.IO.File]::WriteAllBytes($AskIcon,  [System.Convert]::FromBase64String($Script:B64_ASKICON))
         [System.IO.File]::WriteAllBytes($DoneIcon, [System.Convert]::FromBase64String($Script:B64_DONEICON))
         Write-Ok ('clawd_question.png / clawd_done.png ' + (T '(작은 창용 아이콘 256x256)' '(small icons 256x256)'))
+        [System.IO.File]::WriteAllBytes($AppIcon, [System.Convert]::FromBase64String($Script:B64_APPICON))
+        Write-Ok ('clawd.png ' + (T '(알림 헤더 아이콘)' '(notification header icon)'))
     } catch {
         Write-Err2 ((T '이미지 생성 실패: ' 'Failed to write images: ') + $_.Exception.Message)
+        return 1
+    }
+
+    # 토스트 헤더에 "Windows PowerShell" 대신 이 이름과 아이콘이 표시되도록 발신자 ID를 등록한다
+    try {
+        New-Item -Path $AppIdKey -Force | Out-Null
+        Set-ItemProperty -Path $AppIdKey -Name 'DisplayName' -Value $AppDisplayName
+        Set-ItemProperty -Path $AppIdKey -Name 'IconUri' -Value $AppIcon
+        Write-Ok ((T '알림 발신자 등록: ' 'Registered notification sender: ') + $AppDisplayName)
+    } catch {
+        Write-Err2 ((T '알림 발신자 등록 실패: ' 'Failed to register notification sender: ') + $_.Exception.Message)
         return 1
     }
 

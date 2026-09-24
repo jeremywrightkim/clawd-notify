@@ -16,7 +16,7 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
-$Version = 'v1.1.0'
+$Version = 'v1.2.0'
 
 # ---------------------------------------------------------------- 경로
 $ClaudeDir    = Join-Path $env:USERPROFILE '.claude'

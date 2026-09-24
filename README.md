@@ -166,7 +166,8 @@ VS Code나 터미널 창이 **활성 상태여도 알림은 뜹니다.** hook �
     ├── clawd-ask-hero.png     배너 364x180
     ├── clawd-done-hero.png    배너 364x180
     ├── clawd_question.png     아이콘 256x256
-    └── clawd_done.png         아이콘 256x256
+    ├── clawd_done.png         아이콘 256x256
+    └── clawd.png              알림 헤더 아이콘 256x256 (배지 없음)
 
 HKEY_CURRENT_USER\Software\Classes\clawd-focus   (알림 클릭용 프로토콜 — 제거 시 함께 삭제)
 ```
@@ -194,7 +195,7 @@ powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\.claude\claude-notify
 이건 뜨는데 hook만 안 되면 설정 문제이고, 이것도 안 뜨면 Windows 알림 설정(집중 지원)을 확인하세요.
 
 **4. Windows 알림 설정**
-설정 → 시스템 → 알림에서 "Windows PowerShell" 항목이 켜져 있는지 확인하세요.
+설정 → 시스템 → 알림에서 "Clawd Notify" 항목이 켜져 있는지 확인하세요.
 
 ## 개발
 
@@ -217,8 +218,8 @@ powershell -ExecutionPolicy Bypass -File build.ps1
 
 ## 알아둘 점
 
-토스트의 AppUserModelId로 Windows PowerShell의 등록된 ID를 사용합니다. Windows는 등록되지 않은 임의의 ID로 보낸 알림을 오류 없이 버리기 때문입니다. 이로 인해 알림 설정 목록과 알림 센터에서는 "Windows PowerShell"로 분류됩니다. 토스트에 표시되는 제목은 설정한 값("Claude Code")입니다.
+토스트는 자체 AppUserModelId(`ClawdNotify`)로 보냅니다. Windows는 등록되지 않은 ID로 보낸 알림을 오류 없이 버리므로, 설치 시 `HKCU:\Software\Classes\AppUserModelId\ClawdNotify`에 표시 이름("Clawd Notify")과 아이콘을 등록합니다. 그래서 토스트 상단 헤더, 알림 설정 목록, 알림 센터에 "Clawd Notify"로 표시되고, 다른 PowerShell 스크립트의 알림과 따로 켜고 끌 수 있습니다. 제거 시 이 등록과 알림 설정 키(`...\Notifications\Settings\ClawdNotify`), 알림 센터에 남은 알림을 함께 지웁니다.
 
 ---
 
-v1.1.0 | 개발: 김설호 | jeremywrightkim@gmail.com
+v1.2.0 | 개발: 김설호 | jeremywrightkim@gmail.com
