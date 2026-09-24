@@ -4,6 +4,12 @@
 
 Claude Code가 확인을 요청하거나 작업을 끝냈을 때 Windows 토스트 알림을 띄웁니다.
 
+| 확인이 필요할 때 | 작업이 끝났을 때 |
+|---|---|
+| ![확인 요청 알림](docs/images/toast-ask-ko.png) | ![작업 완료 알림](docs/images/toast-done-ko.png) |
+
+제목에는 프로젝트 폴더 이름이 붙고, 알림을 클릭하면 해당 VS Code 창이 앞으로 옵니다.
+
 | 이벤트 | 알림 | 발화 시점 |
 |---|---|---|
 | `PermissionRequest` | Clawd + 물음표 | 승인이 필요한 순간 **즉시** (기본 꺼짐) |
@@ -63,6 +69,8 @@ Claude Code가 확인을 요청하거나 작업을 끝냈을 때 Windows 토스�
 ## 설정 창
 
 `settings.bat`을 실행하면 그래픽 설정 창이 열립니다. 이벤트별로 탭이 나뉘어 있습니다.
+
+![설정 창](docs/images/settings-ko.png)
 
 ### 창이 떠있는 시간
 

@@ -4,6 +4,12 @@
 
 Shows a Windows toast notification when Claude Code needs your attention or finishes a task.
 
+| Needs your attention | Task completed |
+|---|---|
+| ![Attention toast](docs/images/toast-ask-en.png) | ![Task completed toast](docs/images/toast-done-en.png) |
+
+The title includes the project folder name, and clicking the toast brings that VS Code window to the front.
+
 | Event | Toast | When it fires |
 |---|---|---|
 | `Notification` | Clawd + question mark | Permission prompt, idle, etc. (~6s / ~60s delay) |
@@ -53,6 +59,8 @@ If a change still hasn't applied after a few seconds, Claude Code may have misse
 ## Settings window
 
 Run `settings.bat` to open the settings window. Each event has its own tab.
+
+![Settings window](docs/images/settings-en.png)
 
 ### How long the notification stays
 
