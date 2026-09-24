@@ -1,6 +1,10 @@
 # Claude Code — Clawd 토스트 알림
 
-**한국어** | [English](README.en.md)
+<p align="center">
+  <a href="README.md"><img alt="한국어" src="https://img.shields.io/badge/%ED%95%9C%EA%B5%AD%EC%96%B4-%EC%84%A0%ED%83%9D%EB%90%A8-2563eb?style=for-the-badge"></a>
+  &nbsp;
+  <a href="README.en.md"><img alt="English" src="https://img.shields.io/badge/English-Read%20in%20English-6b7280?style=for-the-badge"></a>
+</p>
 
 Claude Code가 확인을 요청하거나 작업을 끝냈을 때 Windows 토스트 알림을 띄웁니다.
 

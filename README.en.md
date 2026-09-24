@@ -1,6 +1,10 @@
 # Claude Code — Clawd Toast Notifications
 
-[한국어](README.md) | **English**
+<p align="center">
+  <a href="README.md"><img alt="한국어" src="https://img.shields.io/badge/%ED%95%9C%EA%B5%AD%EC%96%B4-%ED%95%9C%EA%B5%AD%EC%96%B4%EB%A1%9C%20%EB%B3%B4%EA%B8%B0-6b7280?style=for-the-badge"></a>
+  &nbsp;
+  <a href="README.en.md"><img alt="English" src="https://img.shields.io/badge/English-Selected-2563eb?style=for-the-badge"></a>
+</p>
 
 Shows a Windows toast notification when Claude Code needs your attention or finishes a task.
 
