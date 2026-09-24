@@ -1,5 +1,7 @@
 # Claude Code — Clawd 토스트 알림
 
+**한국어** | [English](README.en.md)
+
 Claude Code가 확인을 요청하거나 작업을 끝냈을 때 Windows 토스트 알림을 띄웁니다.
 
 | 이벤트 | 알림 | 발화 시점 |
@@ -20,7 +22,7 @@ Claude Code가 확인을 요청하거나 작업을 끝냈을 때 Windows 토스�
 
 ## 설치
 
-`install.bat` 더블클릭. 설치 후 **Claude Code를 재시작**해야 적용됩니다.
+`install.bat` 더블클릭. 실행 중인 Claude Code에도 몇 초 안에 자동 반영됩니다(재시작 불필요).
 
 | 파일 | 동작 |
 |---|---|
@@ -29,6 +31,34 @@ Claude Code가 확인을 요청하거나 작업을 끝냈을 때 Windows 토스�
 | `uninstall.bat` | 제거 |
 
 `install.bat -Force`로 실행하면 기존 hook을 확인 없이 덮어씁니다.
+
+`install.bat -Language en`처럼 표시 언어(`ko` / `en`)를 지정할 수 있습니다. 생략하면 기존 설정을 유지하고, 처음 설치라면 Windows 표시 언어를 따릅니다.
+
+## 언어 (한국어 / English)
+
+설정 창 오른쪽 아래 **Language**에서 한국어와 English를 고를 수 있습니다. 고르는 즉시 저장되고 설정 창이 해당 언어로 다시 열립니다.
+
+언어 설정은 다음에 모두 적용됩니다.
+
+- 설정 창
+- 알림 버튼 (설정 / 닫기 ↔ Settings / Close)
+- 기본 알림 문구 (`확인이 필요합니다.` ↔ `Claude needs your attention.`, `작업이 완료되었습니다.` ↔ `Task completed.`)
+- 설치·제거 메시지
+
+기본 문구는 알림을 띄울 때 번역되므로 언어를 바꾼 뒤 다시 저장하지 않아도 됩니다. 직접 입력한 문구는 번역하지 않고 그대로 표시합니다.
+
+언어 설정은 `%USERPROFILE%\.claude\claude-notify-config.json`에 저장됩니다.
+
+## 적용 시점
+
+**재시작은 필요 없습니다.** Claude Code는 `settings.json`을 감시하다가 바뀌면 실행 중인 세션에 다시 불러옵니다.
+
+| 항목 | 적용 시점 | 이유 |
+|---|---|---|
+| 언어, 알림 버튼, 기본 문구 번역, 프로젝트 이름 표시, 클릭 시 창 전환 | **다음 알림부터 즉시** | 알림을 띄울 때마다 `claude-notify.ps1`이 새로 실행되며 읽음 |
+| 알림 문구, 제목, 그림/창 크기, 알림음, 표시 시간, 이벤트 사용 여부, 발화 조건 | **저장 후 몇 초 안에** | `settings.json`의 hook 설정 → Claude Code가 파일 변경을 감지해 다시 불러옴 |
+
+몇 초가 지나도 반영되지 않으면 Claude Code가 파일 변경을 놓친 것이니 재시작하세요. 오래된 Claude Code 버전은 hook을 시작할 때만 읽으므로 재시작이 필요할 수 있습니다.
 
 ## 설정 창
 
@@ -131,6 +161,7 @@ VS Code나 터미널 창이 **활성 상태여도 알림은 뜹니다.** hook �
 ├── claude-notify.ps1              토스트 발송 스크립트
 ├── claude-notify-settings.ps1     설정 UI
 ├── claude-notify-focus.exe        알림 클릭 시 VS Code 창 전환 (설치 시 컴파일)
+├── claude-notify-config.json      표시 언어 설정
 └── assets\
     ├── clawd-ask-hero.png     배너 364x180
     ├── clawd-done-hero.png    배너 364x180
@@ -148,8 +179,8 @@ Windows 10 이상, Windows PowerShell 5.1(Windows 기본 포함). 외부 모듈�
 
 ## 알림이 안 뜰 때
 
-**1. Claude Code를 재시작했나요?**
-가장 흔한 원인입니다. hook은 시작 시점에만 로드됩니다.
+**1. 설정을 바꾼 뒤 몇 초가 지났나요?**
+hook 설정은 자동으로 다시 불러오지만 가끔 변경을 놓칠 수 있습니다. 그럴 때는 Claude Code를 재시작하세요.
 
 **2. `Notification`은 터미널을 보고 있으면 발화하지 않습니다.**
 Claude Code가 이미 화면에 표시한 내용을 중복 알리지 않기 때문입니다. 창을 다른 앱으로 전환한 뒤 테스트하세요.
@@ -165,10 +196,29 @@ powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\.claude\claude-notify
 **4. Windows 알림 설정**
 설정 → 시스템 → 알림에서 "Windows PowerShell" 항목이 켜져 있는지 확인하세요.
 
+## 개발
+
+배포 파일은 `Install-ClawdNotify.ps1` 하나이며, 설정 UI와 이미지는 그 안에 Base64로 들어 있습니다. 설정 UI는 원본을 따로 관리합니다.
+
+| 파일 | 설명 |
+|---|---|
+| `src/claude-notify-settings.ps1` | 설정 UI 원본 |
+| `build.ps1` | `src/`의 원본을 `Install-ClawdNotify.ps1`에 넣음 |
+
+설정 UI를 고친 뒤에는 반드시 빌드하세요.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File build.ps1
+```
+
+알림 스크립트(`$NotifyScriptBody`)와 창 전환 프로그램(`$FocusSource`)은 `Install-ClawdNotify.ps1` 안에 평문으로 있어 바로 수정하면 됩니다.
+
+`.ps1` 파일은 **UTF-8 BOM**으로 저장해야 합니다. BOM이 없으면 Windows PowerShell 5.1이 한글을 깨뜨립니다.
+
 ## 알아둘 점
 
 토스트의 AppUserModelId로 Windows PowerShell의 등록된 ID를 사용합니다. Windows는 등록되지 않은 임의의 ID로 보낸 알림을 오류 없이 버리기 때문입니다. 이로 인해 알림 설정 목록과 알림 센터에서는 "Windows PowerShell"로 분류됩니다. 토스트에 표시되는 제목은 설정한 값("Claude Code")입니다.
 
 ---
 
-v1.0.0 | 개발: 김설호
+v1.1.0 | 개발: 김설호 | jeremywrightkim@gmail.com
