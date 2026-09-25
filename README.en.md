@@ -17,7 +17,7 @@ The title includes the project folder name, and clicking the toast brings that V
 | Event | Toast | When it fires |
 |---|---|---|
 | `Notification` | Clawd + question mark | Permission prompt, idle, etc. (~6s / ~60s delay) |
-| `Stop` | Clawd cheering + check | When Claude finishes a response |
+| `Stop` | Clawd cheering + check | When Claude finishes a response (skipped while background tasks run) |
 
 The `Notification` delays (about 6 seconds for permission prompts, about 60 seconds for idle) are **hard-coded in Claude Code and cannot be shortened.**
 
@@ -90,7 +90,9 @@ Applies to the `Notification` event only. By default all conditions are enabled;
 
 Because of the ~6s delay, approving a permission prompt before then means no toast is shown.
 
-`Stop` has no conditions. It fires every time Claude finishes a response.
+`Stop` has no conditions. It fires every time Claude finishes a response, **but no toast is shown while background tasks are still running.**
+
+Claude ends its turn right after starting background work (shell commands, subagents, monitors, etc.) instead of waiting for it. `Stop` fires at that point too, so without this check you would get "Task completed." while work is still in progress. The notification script skips the toast when the `background_tasks` field that `Stop` passes in is not empty, and notifies when Claude finishes its final turn after all the work is done. Older Claude Code versions that don't pass `background_tasks` notify every time.
 
 ### Image / size
 
@@ -222,4 +224,4 @@ Toasts are sent with a dedicated AppUserModelId (`ClawdNotify`). Windows silentl
 
 ---
 
-v1.2.0 | Developer: Kim Sulho | jeremywrightkim@gmail.com
+v1.2.1 | Developer: Kim Sulho | jeremywrightkim@gmail.com

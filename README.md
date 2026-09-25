@@ -18,7 +18,7 @@ Claude Code가 확인을 요청하거나 작업을 끝냈을 때 Windows 토스�
 |---|---|---|
 | `PermissionRequest` | Clawd + 물음표 | 승인이 필요한 순간 **즉시** (기본 꺼짐) |
 | `Notification` | Clawd + 물음표 | 승인 대기·유휴 등 (6초/60초 지연) |
-| `Stop` | Clawd 만세 + 체크 | Claude가 응답을 마쳤을 때 |
+| `Stop` | Clawd 만세 + 체크 | Claude가 응답을 마쳤을 때 (백그라운드 작업이 남아 있으면 생략) |
 
 ### 즉시 알림 vs 지연 알림
 
@@ -100,7 +100,9 @@ Windows 토스트는 **초 단위 지정을 지원하지 않습니다.** 이 두
 
 승인 대기는 약 6초 지연이 있어, 그 전에 승인하면 알림이 뜨지 않습니다.
 
-`Stop`은 조건을 선택할 수 없습니다. Claude가 응답을 마칠 때마다 항상 발화합니다.
+`Stop`은 조건을 선택할 수 없습니다. Claude가 응답을 마칠 때마다 발화하되, **백그라운드 작업이 남아 있으면 알림을 띄우지 않습니다.**
+
+Claude는 백그라운드 작업(셸 명령, 서브에이전트, 모니터 등)을 시작한 뒤 결과를 기다리지 않고 턴을 마칩니다. 이때도 `Stop`이 발생하므로, 그대로 두면 아직 작업 중인데 "작업이 완료되었습니다" 알림이 뜹니다. 그래서 `Stop` hook이 넘겨주는 `background_tasks`에 항목이 있으면 건너뛰고, 작업이 모두 끝난 뒤 Claude가 마지막 턴을 마칠 때 알립니다. `background_tasks`를 넘겨주지 않는 예전 Claude Code에서는 매번 알립니다.
 
 ### 그림 설정 / 창 크기
 
@@ -234,4 +236,4 @@ powershell -ExecutionPolicy Bypass -File build.ps1
 
 ---
 
-v1.2.0 | 개발: 김설호 | jeremywrightkim@gmail.com
+v1.2.1 | 개발: 김설호 | jeremywrightkim@gmail.com

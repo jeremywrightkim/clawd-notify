@@ -16,7 +16,7 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
-$Version = 'v1.2.0'
+$Version = 'v1.2.1'
 
 # ---------------------------------------------------------------- 경로
 $ClaudeDir    = Join-Path $env:USERPROFILE '.claude'
@@ -326,8 +326,8 @@ function New-EventTab {
         $y += 178
     } else {
         $lblStopNote = New-Object System.Windows.Forms.Label
-        $lblStopNote.Text = T '창이 뜨는 조건: Claude가 응답을 마칠 때마다 항상 발화합니다. (조건 선택 불가)' `
-                              'When to notify: every time Claude finishes a response. (Not configurable)'
+        $lblStopNote.Text = T '창이 뜨는 조건: Claude가 응답을 마칠 때 (백그라운드 작업이 남아 있으면 생략)' `
+                              'When to notify: when Claude finishes a response (skipped while background tasks run)'
         $lblStopNote.Location = New-Object System.Drawing.Point(16, $y)
         $lblStopNote.Size = New-Object System.Drawing.Size(564, 22)
         $lblStopNote.ForeColor = [System.Drawing.Color]::DimGray
